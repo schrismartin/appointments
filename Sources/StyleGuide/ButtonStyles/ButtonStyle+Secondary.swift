@@ -16,7 +16,7 @@ public struct SecondaryButtonStyle: ButtonStyle {
 }
 
 extension ButtonStyle where Self == SecondaryButtonStyle {
-  
+
   public static var secondary: SecondaryButtonStyle {
     SecondaryButtonStyle()
   }

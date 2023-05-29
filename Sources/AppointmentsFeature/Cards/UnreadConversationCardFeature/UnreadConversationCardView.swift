@@ -1,23 +1,23 @@
-import SwiftUI
-import StyleGuide
 import ComposableArchitecture
+import StyleGuide
+import SwiftUI
 
 struct UnreadConversationCardView: View {
-  
+
   var store: StoreOf<UnreadConversationCardReducer>
-  
+
   struct ViewState: Equatable {
     var nameComponents: PersonNameComponents
     var timestamp: Date
     var lastMessage: String?
-    
+
     init(state: UnreadConversationCardReducer.State) {
       self.nameComponents = state.appointment.user.components
       self.timestamp = state.appointment.lastMessageAt ?? state.appointment.startTime
       self.lastMessage = state.appointment.lastMessage
     }
   }
-  
+
   var body: some View {
     WithViewStore(store, observe: ViewState.init) { viewStore in
       CardLayout {
@@ -26,7 +26,7 @@ struct UnreadConversationCardView: View {
             .frame(width: 8, height: 8)
             .foregroundColor(.accentColor)
             .opacity(1)
-          
+
           AvatarView(components: viewStore.nameComponents, color: .avatarRed)
         }
       } header: {

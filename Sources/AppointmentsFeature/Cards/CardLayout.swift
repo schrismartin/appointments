@@ -1,13 +1,19 @@
-import SwiftUI
 import StyleGuide
+import SwiftUI
 
-struct CardLayout<Icon: View, Header: View, HeaderDetail: View, Content: View, Buttons: View>: View {
+struct CardLayout<
+  Icon: View,
+  Header: View,
+  HeaderDetail: View,
+  Content: View,
+  Buttons: View
+>: View {
   var icon: Icon
   var header: Header
   var headerDetail: HeaderDetail
   var content: Content
   var buttons: Buttons
-  
+
   init(
     @ViewBuilder icon: @escaping () -> Icon,
     @ViewBuilder header: @escaping () -> Header,
@@ -21,12 +27,12 @@ struct CardLayout<Icon: View, Header: View, HeaderDetail: View, Content: View, B
     self.content = content()
     self.buttons = buttons()
   }
-  
+
   var body: some View {
     Grid(horizontalSpacing: 12) {
       GridRow(alignment: .center) {
         icon
-        
+
         HStack {
           header
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -34,28 +40,28 @@ struct CardLayout<Icon: View, Header: View, HeaderDetail: View, Content: View, B
           headerDetail
         }
       }
-      
+
       Spacer(minLength: 4)
-      
+
       GridRow {
         Spacer()
-        
+
         content
           .frame(maxWidth: .infinity, alignment: .leading)
           .lineLimit(2, reservesSpace: false)
           .foregroundColor(.secondary)
       }
-      
-      if (Buttons.self != EmptyView.self) {
+
+      if Buttons.self != EmptyView.self {
         Spacer(minLength: 12)
-        
+
         GridRow {
           Spacer()
           ViewThatFits {
             HStack {
               buttons
             }
-            
+
             VStack {
               buttons
             }
@@ -75,7 +81,7 @@ struct CardLayout_Previews: PreviewProvider {
           .frame(width: 8, height: 8)
           .foregroundColor(.accentColor)
           .opacity(1)
-        
+
         Image("icon-request", bundle: .module)
       }
     } header: {
@@ -83,7 +89,7 @@ struct CardLayout_Previews: PreviewProvider {
         Text("Request to book")
           .font(.aeonikHeadline)
           .foregroundColor(.pawpBrilliantBlue)
-        
+
         Text("Laura Skelvo")
           .font(.aeonikTitle)
       }
@@ -92,7 +98,8 @@ struct CardLayout_Previews: PreviewProvider {
       Text("5:46pm")
         .font(.aeonikCaption)
     } content: {
-      Text("""
+      Text(
+        """
         Laura has requested an appointment on \
         \(Text("Tue, May 18 @ 9:30am").bold())
         """

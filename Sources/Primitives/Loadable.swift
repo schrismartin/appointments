@@ -1,11 +1,12 @@
 import Foundation
+
 import enum ComposableArchitecture.TaskResult
 
 public enum Loadable<Success> {
   case ready
   case loading(Success?)
   case completed(TaskResult<Success>)
-  
+
   @inlinable
   public func map<T>(_ transform: (Success) -> T) -> Loadable<T> {
     switch self {
@@ -16,7 +17,7 @@ public enum Loadable<Success> {
       return .completed(result.map(transform))
     }
   }
-  
+
   public mutating func startLoading() {
     switch self {
     case .ready, .loading(nil), .completed(.failure):
@@ -25,12 +26,11 @@ public enum Loadable<Success> {
       self = .loading(stale)
     }
   }
-  
+
   public var isComplete: Bool {
-    if case .completed = self { return true }
-    else { return false }
+    if case .completed = self { return true } else { return false }
   }
-  
+
   public var success: Success? {
     switch self {
     case .loading(let value?), .completed(.success(let value)):
@@ -39,7 +39,7 @@ public enum Loadable<Success> {
       return nil
     }
   }
-  
+
   public var failure: Error? {
     guard case .completed(.failure(let failure)) = self else { return nil }
     return failure

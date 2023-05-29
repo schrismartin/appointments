@@ -1,30 +1,30 @@
-import SwiftUI
-import StyleGuide
 import ComposableArchitecture
+import StyleGuide
+import SwiftUI
 
 struct UnreadAppointmentRequestCardView: View {
-  
+
   var store: StoreOf<UnreadAppointmentRequestCardReducer>
-  
+
   struct ViewState: Equatable {
     var nameComponents: PersonNameComponents
     var requestedDate: Date
     var startDate: Date
-    
+
     init(state: UnreadAppointmentRequestCardReducer.State) {
       self.nameComponents = state.appointment.user.components
       self.requestedDate = state.appointment.requestedAt
       self.startDate = state.appointment.startTime
     }
   }
-  
+
   static let dateFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateFormat = "E, MMM d @ h:mm a"
     formatter.timeZone = .autoupdatingCurrent
     return formatter
   }()
-  
+
   var body: some View {
     WithViewStore(store, observe: ViewState.init) { viewStore in
       CardLayout {
@@ -33,7 +33,7 @@ struct UnreadAppointmentRequestCardView: View {
             .frame(width: 8, height: 8)
             .foregroundColor(.accentColor)
             .opacity(1)
-          
+
           Image.iconRequest
         }
       } header: {
@@ -41,7 +41,7 @@ struct UnreadAppointmentRequestCardView: View {
           Text("Request to book")
             .font(.aeonikHeadline)
             .foregroundColor(.accentColor)
-          
+
           Text("\(viewStore.nameComponents, format: .name(style: .long))")
             .font(.aeonikTitle2)
         }
@@ -49,10 +49,11 @@ struct UnreadAppointmentRequestCardView: View {
         Text("\(viewStore.requestedDate, format: .dateTime.hour().minute())")
           .font(.aeonikCaption)
       } content: {
-        Text("""
-        \(viewStore.nameComponents, format: .name(style: .short)) has requested an appointment on \
-        \(Text("\(viewStore.startDate, formatter: Self.dateFormatter)").bold())
-        """
+        Text(
+          """
+          \(viewStore.nameComponents, format: .name(style: .short)) has requested an appointment on \
+          \(Text("\(viewStore.startDate, formatter: Self.dateFormatter)").bold())
+          """
         )
         .font(.aeonikBody)
       } buttons: {

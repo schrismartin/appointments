@@ -1,6 +1,6 @@
+import Dependencies
 import Foundation
 import Primitives
-import Dependencies
 
 extension AppointmentsResponse: Mockable {
   public static var mock: AppointmentsResponse {
@@ -32,7 +32,7 @@ extension AppointmentsResponse.Appointment.Professional: Mockable {
     @Dependency(\.withRandomNumberGenerator) var generator: WithRandomNumberGenerator
     return generator { generator in
       AppointmentsResponse.Appointment.Professional(
-        id: Int.random(in: 1000 ..< 9999, using: &generator),
+        id: Int.random(in: 1000..<9999, using: &generator),
         firstName: "Jane",
         lastName: "Doe",
         jobTitle: .dvm
@@ -46,7 +46,7 @@ extension AppointmentsResponse.Appointment.User: Mockable {
     @Dependency(\.withRandomNumberGenerator) var generator: WithRandomNumberGenerator
     return generator { generator in
       AppointmentsResponse.Appointment.User(
-        id: Int.random(in: 1000 ..< 9999, using: &generator),
+        id: Int.random(in: 1000..<9999, using: &generator),
         firstName: "John",
         lastName: "Doe"
       )

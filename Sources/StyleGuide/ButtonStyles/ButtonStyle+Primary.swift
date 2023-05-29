@@ -1,7 +1,7 @@
 import SwiftUI
 
 public struct PrimaryButtonStyle: ButtonStyle {
-  
+
   public func makeBody(configuration: Configuration) -> some View {
     configuration.label
       .font(.aeonikButton)

@@ -12,7 +12,7 @@ let package = Package(
     .library(
       name: "Application",
       targets: ["Application", "AppointmentsFeature"]
-    ),
+    )
   ],
   dependencies: [
     .package(
@@ -22,7 +22,7 @@ let package = Package(
     .package(
       url: "https://github.com/pointfreeco/swift-dependencies.git",
       from: "0.5.0"
-    )
+    ),
   ],
   targets: [
     .target(
@@ -62,7 +62,7 @@ let package = Package(
     .target(
       name: "Primitives",
       dependencies: [
-        .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+        .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
       ]
     ),
     .target(
@@ -75,8 +75,8 @@ let package = Package(
     .target(
       name: "TabsFeature",
       dependencies: [
-        .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+        .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
       ]
-    )
+    ),
   ]
 )

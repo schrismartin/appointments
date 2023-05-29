@@ -1,5 +1,5 @@
-import Foundation
 import APIClient
+import Foundation
 
 extension Resource<AppointmentsResponse> {
   /// API Request fetching a list of appointments.

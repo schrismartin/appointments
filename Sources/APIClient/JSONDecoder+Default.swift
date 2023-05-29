@@ -11,17 +11,17 @@ extension JSONDecoder {
     decoder.dateDecodingStrategy = .custom { decoder in
       let container = try decoder.singleValueContainer()
       let dateString = try container.decode(String.self)
-      
+
       guard let date = ISO8601DateFormatter.default.date(from: dateString) else {
         throw DecodingError.dataCorruptedError(
           in: container,
           debugDescription: "Cannot decode date string \(dateString)"
         )
       }
-      
+
       return date
     }
-    
+
     return decoder
   }()
 }

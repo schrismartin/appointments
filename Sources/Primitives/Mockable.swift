@@ -6,14 +6,14 @@ public protocol Mockable {
 }
 
 extension Array: Mockable where Element: Mockable {
-  public static var mock: Array<Element> {
-    (0 ..< 10).map { _ in .mock }
+  public static var mock: [Element] {
+    (0..<10).map { _ in .mock }
   }
 }
 
 extension Date: Mockable {
   public static var mock: Date {
     // Friday May 26, 2023
-    return Date(timeIntervalSinceReferenceDate: 706821885)
+    return Date(timeIntervalSinceReferenceDate: 706_821_885)
   }
 }

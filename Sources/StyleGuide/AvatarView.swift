@@ -3,12 +3,12 @@ import SwiftUI
 public struct AvatarView: View {
   var components: PersonNameComponents
   var color: Color
-  
+
   public init(components: PersonNameComponents, color: Color) {
     self.components = components
     self.color = color
   }
-  
+
   public var body: some View {
     Circle()
       .foregroundColor(.accentColor)

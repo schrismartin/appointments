@@ -6,7 +6,7 @@ public struct AppointmentReducer: Reducer {
     case startingSoon(StartingSoonCardReducer.State)
     case unreadConversation(UnreadConversationCardReducer.State)
     case ended(EndedCardReducer.State)
-    
+
     public var id: AppointmentsResponse.Appointment.ID {
       switch self {
       case .unreadRequest(let state): return state.appointment.id
@@ -15,7 +15,7 @@ public struct AppointmentReducer: Reducer {
       case .ended(let state): return state.appointment.id
       }
     }
-    
+
     init(appointment: AppointmentsResponse.Appointment) {
       switch appointment.status {
       case .requested:
@@ -31,14 +31,14 @@ public struct AppointmentReducer: Reducer {
       }
     }
   }
-  
+
   public enum Action: Equatable {
     case unreadRequest(UnreadAppointmentRequestCardReducer.Action)
     case startingSoon(StartingSoonCardReducer.Action)
     case unreadConversation(UnreadConversationCardReducer.Action)
     case ended(EndedCardReducer.Action)
   }
-  
+
   public var body: some ReducerOf<Self> {
     Scope(state: /State.unreadRequest, action: /Action.unreadRequest) {
       UnreadAppointmentRequestCardReducer()
@@ -54,4 +54,3 @@ public struct AppointmentReducer: Reducer {
     }
   }
 }
-

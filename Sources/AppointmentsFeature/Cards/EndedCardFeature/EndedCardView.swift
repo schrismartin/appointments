@@ -1,30 +1,30 @@
-import SwiftUI
-import StyleGuide
 import ComposableArchitecture
+import StyleGuide
+import SwiftUI
 
 struct EndedCardView: View {
-  
+
   var store: StoreOf<EndedCardReducer>
-  
+
   struct ViewState: Equatable {
     var nameComponents: PersonNameComponents
     var timestamp: Date
     var lastMessage: String?
-    
+
     init(state: EndedCardReducer.State) {
       self.nameComponents = state.appointment.user.components
       self.timestamp = state.appointment.lastMessageAt ?? state.appointment.startTime
       self.lastMessage = state.appointment.lastMessage
     }
   }
-  
+
   static let dateFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateFormat = "E, MMM d @ h:mm a"
     formatter.timeZone = .autoupdatingCurrent
     return formatter
   }()
-  
+
   var body: some View {
     WithViewStore(store, observe: ViewState.init) { viewStore in
       CardLayout {
@@ -33,7 +33,7 @@ struct EndedCardView: View {
             .frame(width: 8, height: 8)
             .foregroundColor(.accentColor)
             .opacity(1)
-          
+
           AvatarView(components: viewStore.nameComponents, color: .avatarRed)
         }
       } header: {

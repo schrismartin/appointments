@@ -1,22 +1,22 @@
-import SwiftUI
-import ComposableArchitecture
 import APIClient
+import ComposableArchitecture
 import Primitives
+import SwiftUI
 
 public struct AppointmentsView: View {
-  
+
   let store: StoreOf<AppointmentsReducer>
-  
+
   public init(store: StoreOf<AppointmentsReducer>) {
     self.store = store
   }
-  
+
   struct ViewState: Equatable {
-    
+
     init(state: AppointmentsReducer.State) {
     }
   }
-  
+
   public var body: some View {
     WithViewStore(store, observe: ViewState.init) { viewStore in
       List {
@@ -38,7 +38,7 @@ public struct AppointmentsView: View {
           }
           .frame(maxWidth: .infinity)
         }
-        
+
         ToolbarItem(placement: .navigationBarLeading) {
           Button {
             viewStore.send(.view(.openTabButtonPressed))

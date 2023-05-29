@@ -5,7 +5,7 @@ public struct LoadableView<Model, Content: View, Failure: View>: View {
   var placeholder: Model
   var content: (Model) -> Content
   var failure: (Error) -> Failure
-  
+
   public init(
     model: Loadable<Model>,
     placeholder: Model,
@@ -17,13 +17,13 @@ public struct LoadableView<Model, Content: View, Failure: View>: View {
     self.content = content
     self.failure = failure
   }
-  
+
   public var body: some View {
     ZStack {
       content(model.success ?? placeholder)
         .redacted(reason: model.success != nil ? [] : .placeholder)
         .disabled(!model.isComplete)
-      
+
       if let error = model.failure {
         Rectangle()
           .foregroundColor(Color(.systemBackground))
