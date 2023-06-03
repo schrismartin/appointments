@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-  name: "Appointments",
+  name: "appointments",
   platforms: [
     .iOS(.v16)
   ],
@@ -41,12 +41,6 @@ let package = Package(
         .process("Resources/Assets.xcassets")
       ]
     ),
-    .testTarget(
-      name: "ApplicationTests",
-      dependencies: [
-        "Application"
-      ]
-    ),
     .target(
       name: "AppointmentsFeature",
       dependencies: [
@@ -57,6 +51,12 @@ let package = Package(
       ],
       resources: [
         .process("Resources/Assets.xcassets")
+      ]
+    ),
+    .testTarget(
+      name: "AppointmentsFeatureTests",
+      dependencies: [
+        "AppointmentsFeature"
       ]
     ),
     .target(

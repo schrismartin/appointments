@@ -53,6 +53,8 @@ public struct AppointmentsReducer: Reducer {
 
         case .onRefresh:
           return .run { send in
+            // Suspending for 1 second to prevent frequent re-fetches and to convince the user
+            // we're actually doing something (since the API is quite fast in this situation)
             try await clock.sleep(for: .seconds(1))
 
             let result = await TaskResult {

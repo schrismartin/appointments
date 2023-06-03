@@ -4,7 +4,7 @@ extension APIClient {
 
   /// An APIClient that always fails with a 404 Not Found error.
   public static var notFound: APIClient {
-    APIClient { request in throw HTTPError(statusCode: 404) }
+    APIClient { request in throw HTTPError.notFound }
   }
 
   /// Return a new APIClient, stubbing the provided resource with the provided response.
