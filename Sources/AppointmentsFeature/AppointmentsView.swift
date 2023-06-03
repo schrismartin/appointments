@@ -4,7 +4,6 @@ import Primitives
 import SwiftUI
 
 public struct AppointmentsView: View {
-
   let store: StoreOf<AppointmentsReducer>
 
   public init(store: StoreOf<AppointmentsReducer>) {
@@ -12,21 +11,29 @@ public struct AppointmentsView: View {
   }
 
   struct ViewState: Equatable {
+    var cardIDs: [AppointmentsResponse.Appointment.ID]
 
     init(state: AppointmentsReducer.State) {
+      self.cardIDs = state.cardStates.map(\.id)
     }
   }
 
   public var body: some View {
     WithViewStore(store, observe: ViewState.init) { viewStore in
-      List {
-        ForEachStore(
-          store.scope(
-            state: \.cardStates,
-            action: AppointmentsReducer.Action.appointment
-          ),
-          content: AppointmentView.init(store:)
-        )
+      // NB: This uses ScrollView + LazyVStack due to a bug where deletions on a non-final cell
+      // causes the last cell to be removed followed by an update to all cells.
+      ScrollView {
+        LazyVStack {
+          ForEachStore(
+            store.scope(
+              state: \.cardStates,
+              action: AppointmentsReducer.Action.appointment
+            ),
+            content: AppointmentView.init(store:)
+          )
+          .padding(.horizontal)
+        }
+        .padding(.vertical)
       }
       .listStyle(.plain)
       .toolbar {

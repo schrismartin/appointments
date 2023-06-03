@@ -13,7 +13,7 @@ extension Font {
 
   public static var aeonikTitle2: Font {
     Fonts.registerFonts()
-    return .custom("AeonikProTRIAL-Regular", size: 18, relativeTo: .title)
+    return .custom("AeonikProTRIAL-Bold", size: 18, relativeTo: .title)
   }
 
   public static var aeonikCaption: Font {

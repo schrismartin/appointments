@@ -19,7 +19,7 @@ extension AppointmentsResponse.Appointment: Mockable {
       endTime: .mock + 10000,
       length: 10000,
       topic: "Flea/Tick",
-      status: .initiated,
+      status: .requested,
       requestedAt: .mock,
       lastMessage: "What do you think about trying one other product that might be a little different for thier skin",
       lastMessageAt: .mock

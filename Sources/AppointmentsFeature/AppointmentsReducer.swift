@@ -14,6 +14,14 @@ public struct AppointmentsReducer: Reducer {
     public init() {
       self.cardStates = []
     }
+
+    public init(response: AppointmentsResponse) {
+      self.cardStates = IdentifiedArray(
+        uniqueElements: response.appointments
+          .sorted(by: { $1.sortDate < $0.sortDate })
+          .map(AppointmentReducer.State.init(appointment:))
+      )
+    }
   }
 
   public enum Action: Equatable {
@@ -61,6 +69,7 @@ public struct AppointmentsReducer: Reducer {
       case .didReceiveAppointments(.success(let response)):
         state.cardStates = IdentifiedArray(
           uniqueElements: response.appointments
+            .sorted(by: { $1.sortDate < $0.sortDate })
             .map(AppointmentReducer.State.init(appointment:))
         )
         return .none

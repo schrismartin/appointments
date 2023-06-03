@@ -69,6 +69,11 @@ struct CardLayout<
           .frame(maxWidth: .infinity, alignment: .leading)
         }
       }
+
+      GridRow {
+        Spacer()
+        Divider()
+      }
     }
   }
 }

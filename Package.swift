@@ -17,7 +17,7 @@ let package = Package(
   dependencies: [
     .package(
       url: "https://github.com/pointfreeco/swift-composable-architecture.git",
-      revision: "b29e8987200ffd58741748866c9e66d97a95a595"
+      revision: "b2815caa1727d72180836b85578272b763cc4853"  // prerelease/1.0
     ),
     .package(
       url: "https://github.com/pointfreeco/swift-dependencies.git",

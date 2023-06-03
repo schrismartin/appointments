@@ -17,6 +17,21 @@ public struct AppointmentsResponse: Codable, Equatable {
     public var lastMessage: String?
     public var lastMessageAt: Date?
 
+    public var sortDate: Date {
+      switch status {
+      case .active:
+        return lastMessageAt ?? startTime
+      case .completed:
+        return endTime
+      case .initiated:
+        return startTime
+      case .requested:
+        return requestedAt
+      case .unhandled:
+        return requestedAt
+      }
+    }
+
     public struct Professional: Codable, Equatable, Identifiable {
       public var id: Int
       public var firstName: String
