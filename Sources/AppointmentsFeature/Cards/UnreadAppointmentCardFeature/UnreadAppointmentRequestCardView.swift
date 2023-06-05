@@ -8,12 +8,12 @@ struct UnreadAppointmentRequestCardView: View {
 
   struct ViewState: Equatable {
     var nameComponents: PersonNameComponents
-    var requestedDate: Date
+    var timestampDate: Date
     var startDate: Date
 
     init(state: UnreadAppointmentRequestCardReducer.State) {
       self.nameComponents = state.appointment.user.components
-      self.requestedDate = state.appointment.requestedAt
+      self.timestampDate = state.appointment.timestampDate
       self.startDate = state.appointment.startTime
     }
   }
@@ -46,7 +46,7 @@ struct UnreadAppointmentRequestCardView: View {
             .font(.aeonikTitle2)
         }
       } headerDetail: {
-        Text("\(viewStore.requestedDate, format: .dateTime.hour().minute())")
+        Text("\(viewStore.timestampDate, format: .dateTime.hour().minute())")
           .font(.aeonikCaption)
       } content: {
         Text(

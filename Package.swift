@@ -23,6 +23,10 @@ let package = Package(
       url: "https://github.com/pointfreeco/swift-dependencies.git",
       from: "0.5.0"
     ),
+    .package(
+      url: "https://github.com/pointfreeco/swift-snapshot-testing.git",
+      from: "1.11.0"
+    ),
   ],
   targets: [
     .target(
@@ -57,6 +61,13 @@ let package = Package(
       name: "AppointmentsFeatureTests",
       dependencies: [
         "AppointmentsFeature"
+      ]
+    ),
+    .testTarget(
+      name: "AppointmentsFeatureSnapshotTests",
+      dependencies: [
+        "AppointmentsFeature",
+        .product(name: "SnapshotTesting", package: "swift-snapshot-testing"),
       ]
     ),
     .target(

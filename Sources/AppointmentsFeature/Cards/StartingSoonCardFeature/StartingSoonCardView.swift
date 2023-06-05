@@ -8,12 +8,14 @@ struct StartingSoonCardView: View {
 
   struct ViewState: Equatable {
     var nameComponents: PersonNameComponents
-    var requestedDate: Date
+    var timestampDate: Date
+    var formattedRelativeStartDate: String
     var startDate: Date
 
     init(state: StartingSoonCardReducer.State) {
       self.nameComponents = state.appointment.user.components
-      self.requestedDate = state.appointment.requestedAt
+      self.timestampDate = state.appointment.timestampDate
+      self.formattedRelativeStartDate = state.formattedRelativeStartDate
       self.startDate = state.appointment.startTime
     }
   }
@@ -39,13 +41,13 @@ struct StartingSoonCardView: View {
             .font(.aeonikTitle2)
         }
       } headerDetail: {
-        Text("\(viewStore.requestedDate, format: .dateTime.hour().minute())")
+        Text("\(viewStore.timestampDate, format: .dateTime.hour().minute())")
           .font(.aeonikCaption)
       } content: {
         Text(
           """
           Your appointment with \(viewStore.nameComponents, format: .name(style: .short)) begins \
-          \(viewStore.startDate, format: .relative(presentation: .numeric, unitsStyle: .abbreviated))
+          \(viewStore.formattedRelativeStartDate)
           """
         )
         .font(.aeonikBody)

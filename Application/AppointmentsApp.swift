@@ -6,7 +6,7 @@ import SwiftUI
 @main
 struct AppointmentsApp: App {
   let store = Store(initialState: .init(appointments: .init(), currentTab: .appointments)) {
-    TabsReducer()
+    TabsReducer()._printChanges()
   }
 
   var body: some Scene {

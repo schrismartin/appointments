@@ -1,0 +1,36 @@
+{
+  "configurations" : [
+    {
+      "id" : "670FEB41-F6A1-4B95-9CE2-DBE3F00FC64C",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Appointments.xcodeproj",
+      "identifier" : "B4D46FA92A1F0AE70077DD57",
+      "name" : "Appointments"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "AppointmentsFeatureSnapshotTests",
+        "name" : "AppointmentsFeatureSnapshotTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "AppointmentsFeatureTests",
+        "name" : "AppointmentsFeatureTests"
+      }
+    }
+  ],
+  "version" : 1
+}

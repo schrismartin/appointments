@@ -4,7 +4,7 @@ import Primitives
 
 extension AppointmentsResponse: Mockable {
   public static var mock: AppointmentsResponse {
-    return AppointmentsResponse(
+    AppointmentsResponse(
       appointments: [
         AppointmentsResponse.Appointment(
           id: UUID(0).uuidString,

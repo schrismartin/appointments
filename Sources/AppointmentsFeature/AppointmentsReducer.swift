@@ -18,7 +18,7 @@ public struct AppointmentsReducer: Reducer {
     public init(response: AppointmentsResponse) {
       self.cardStates = IdentifiedArray(
         uniqueElements: response.appointments
-          .sorted(by: { $1.sortDate < $0.sortDate })
+          .sorted(by: { $1.timestampDate < $0.timestampDate })
           .map(AppointmentReducer.State.init(appointment:))
       )
     }
@@ -71,7 +71,7 @@ public struct AppointmentsReducer: Reducer {
       case .didReceiveAppointments(.success(let response)):
         state.cardStates = IdentifiedArray(
           uniqueElements: response.appointments
-            .sorted(by: { $1.sortDate < $0.sortDate })
+            .sorted(by: { $1.timestampDate < $0.timestampDate })
             .map(AppointmentReducer.State.init(appointment:))
         )
         return .none

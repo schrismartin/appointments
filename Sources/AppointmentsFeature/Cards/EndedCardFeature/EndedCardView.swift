@@ -8,12 +8,12 @@ struct EndedCardView: View {
 
   struct ViewState: Equatable {
     var nameComponents: PersonNameComponents
-    var timestamp: Date
+    var timestampDate: Date
     var lastMessage: String?
 
     init(state: EndedCardReducer.State) {
       self.nameComponents = state.appointment.user.components
-      self.timestamp = state.appointment.lastMessageAt ?? state.appointment.startTime
+      self.timestampDate = state.appointment.timestampDate
       self.lastMessage = state.appointment.lastMessage
     }
   }
@@ -42,7 +42,7 @@ struct EndedCardView: View {
             .font(.aeonikTitle2)
         }
       } headerDetail: {
-        Text("\(viewStore.timestamp, format: .dateTime.hour().minute())")
+        Text("\(viewStore.timestampDate, format: .dateTime.hour().minute())")
           .font(.aeonikCaption)
       } content: {
         Text("This conversation has ended.")

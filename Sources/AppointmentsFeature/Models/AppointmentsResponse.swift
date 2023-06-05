@@ -17,7 +17,7 @@ public struct AppointmentsResponse: Codable, Equatable {
     public var lastMessage: String?
     public var lastMessageAt: Date?
 
-    public var sortDate: Date {
+    public var timestampDate: Date {
       switch status {
       case .active:
         return lastMessageAt ?? startTime

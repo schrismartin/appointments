@@ -8,12 +8,12 @@ struct UnreadConversationCardView: View {
 
   struct ViewState: Equatable {
     var nameComponents: PersonNameComponents
-    var timestamp: Date
+    var timestampDate: Date
     var lastMessage: String?
 
     init(state: UnreadConversationCardReducer.State) {
       self.nameComponents = state.appointment.user.components
-      self.timestamp = state.appointment.lastMessageAt ?? state.appointment.startTime
+      self.timestampDate = state.appointment.timestampDate
       self.lastMessage = state.appointment.lastMessage
     }
   }
@@ -35,7 +35,7 @@ struct UnreadConversationCardView: View {
             .font(.aeonikTitle2)
         }
       } headerDetail: {
-        Text("\(viewStore.timestamp, format: .dateTime.hour().minute())")
+        Text("\(viewStore.timestampDate, format: .dateTime.hour().minute())")
           .font(.aeonikCaption)
       } content: {
         if let lastMessage = viewStore.lastMessage {
