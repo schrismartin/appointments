@@ -20,15 +20,15 @@
     {
       "target" : {
         "containerPath" : "container:",
-        "identifier" : "AppointmentsFeatureSnapshotTests",
-        "name" : "AppointmentsFeatureSnapshotTests"
+        "identifier" : "AppointmentsFeatureTests",
+        "name" : "AppointmentsFeatureTests"
       }
     },
     {
       "target" : {
         "containerPath" : "container:",
-        "identifier" : "AppointmentsFeatureTests",
-        "name" : "AppointmentsFeatureTests"
+        "identifier" : "ApplicationSnapshotTests",
+        "name" : "ApplicationSnapshotTests"
       }
     }
   ],

@@ -45,6 +45,13 @@ let package = Package(
         .process("Resources/Assets.xcassets")
       ]
     ),
+    .testTarget(
+      name: "ApplicationSnapshotTests",
+      dependencies: [
+        "Application",
+        .product(name: "SnapshotTesting", package: "swift-snapshot-testing"),
+      ]
+    ),
     .target(
       name: "AppointmentsFeature",
       dependencies: [
@@ -61,13 +68,6 @@ let package = Package(
       name: "AppointmentsFeatureTests",
       dependencies: [
         "AppointmentsFeature"
-      ]
-    ),
-    .testTarget(
-      name: "AppointmentsFeatureSnapshotTests",
-      dependencies: [
-        "AppointmentsFeature",
-        .product(name: "SnapshotTesting", package: "swift-snapshot-testing"),
       ]
     ),
     .target(

@@ -3,10 +3,10 @@ import ComposableArchitecture
 import SnapshotTesting
 import XCTest
 
-@testable import AppointmentsFeature
+@testable import Application
 
 @MainActor
-final class AppointmentFeatureSnapshotTests: XCTestCase {
+final class ApplicationSnapshotTests: XCTestCase {
 
   override class func setUp() {
     super.setUp()
@@ -14,15 +14,18 @@ final class AppointmentFeatureSnapshotTests: XCTestCase {
   }
 
   func testDefault() async {
-    let store = StoreOf<AppointmentsReducer>(
-      initialState: .init(response: .mock)
+    let store = StoreOf<TabsReducer>(
+      initialState: TabsReducer.State(
+        appointments: .init(response: .mock),
+        currentTab: .appointments
+      )
     ) {
-      AppointmentsReducer()
+      EmptyReducer()
     } withDependencies: { dependencies in
       dependencies.date = .constant(.mock)
     }
 
-    let view = AppointmentsView(store: store)
+    let view = TabsView(store: store)
 
     // Note: This test may fail due to changes in the
     assertSnapshot(
@@ -33,13 +36,16 @@ final class AppointmentFeatureSnapshotTests: XCTestCase {
   }
 
   func testEmpty() async {
-    let store = StoreOf<AppointmentsReducer>(
-      initialState: .init()
+    let store = StoreOf<TabsReducer>(
+      initialState: TabsReducer.State(
+        appointments: .init(),
+        currentTab: .appointments
+      )
     ) {
       EmptyReducer()
     }
 
-    let view = AppointmentsView(store: store)
+    let view = TabsView(store: store)
     assertSnapshot(matching: view, as: .image(perceptualPrecision: 0.97, layout: .device(config: .iPhone13)))
   }
 }
