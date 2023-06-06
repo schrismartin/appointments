@@ -2,6 +2,8 @@ import Dependencies
 import Foundation
 import Primitives
 
+#if DEBUG
+
 extension AppointmentsResponse: Mockable {
   public static var mock: AppointmentsResponse {
     AppointmentsResponse(
@@ -111,3 +113,5 @@ extension AppointmentsResponse.Appointment.User: Mockable {
     )
   }
 }
+
+#endif

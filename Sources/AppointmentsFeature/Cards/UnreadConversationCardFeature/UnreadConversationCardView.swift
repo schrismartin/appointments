@@ -50,6 +50,8 @@ struct UnreadConversationCardView: View {
   }
 }
 
+#if DEBUG
+
 struct UnreadConversationCardView_Previews: PreviewProvider {
   static var previews: some View {
     UnreadConversationCardView(
@@ -60,3 +62,5 @@ struct UnreadConversationCardView_Previews: PreviewProvider {
     .previewLayout(.sizeThatFits)
   }
 }
+
+#endif

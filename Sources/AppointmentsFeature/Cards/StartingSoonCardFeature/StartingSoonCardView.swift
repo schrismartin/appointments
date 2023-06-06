@@ -62,6 +62,8 @@ struct StartingSoonCardView: View {
   }
 }
 
+#if DEBUG
+
 struct StartingSoonCardView_Previews: PreviewProvider {
   static var previews: some View {
     StartingSoonCardView(
@@ -72,3 +74,5 @@ struct StartingSoonCardView_Previews: PreviewProvider {
     .previewLayout(.sizeThatFits)
   }
 }
+
+#endif

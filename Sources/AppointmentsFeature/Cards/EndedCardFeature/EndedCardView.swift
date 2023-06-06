@@ -55,6 +55,8 @@ struct EndedCardView: View {
   }
 }
 
+#if DEBUG
+
 struct EndedCardView_Previews: PreviewProvider {
   static var previews: some View {
     EndedCardView(
@@ -65,3 +67,5 @@ struct EndedCardView_Previews: PreviewProvider {
     .previewLayout(.sizeThatFits)
   }
 }
+
+#endif

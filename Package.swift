@@ -83,11 +83,5 @@ let package = Package(
         .process("Resources/Fonts")
       ]
     ),
-    .target(
-      name: "TabsFeature",
-      dependencies: [
-        .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
-      ]
-    ),
   ]
 )

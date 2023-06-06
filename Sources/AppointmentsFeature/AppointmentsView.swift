@@ -71,6 +71,8 @@ public struct AppointmentsView: View {
   }
 }
 
+#if DEBUG
+
 struct AppointmentsView_Previews: PreviewProvider {
   static var previews: some View {
     NavigationStack {
@@ -84,3 +86,5 @@ struct AppointmentsView_Previews: PreviewProvider {
     }
   }
 }
+
+#endif

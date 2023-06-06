@@ -71,6 +71,8 @@ struct UnreadAppointmentRequestCardView: View {
   }
 }
 
+#if DEBUG
+
 struct UnreadAppointmentRequestCardView_Previews: PreviewProvider {
   static var previews: some View {
     UnreadAppointmentRequestCardView(
@@ -81,3 +83,5 @@ struct UnreadAppointmentRequestCardView_Previews: PreviewProvider {
     .previewLayout(.sizeThatFits)
   }
 }
+
+#endif
